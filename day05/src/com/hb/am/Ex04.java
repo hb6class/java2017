@@ -8,7 +8,7 @@ public class Ex04 {
 		// **
 		// ***
 		// ****
-		star(2);
+		star(4);
 		
 	}//main end
 	
