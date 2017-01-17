@@ -5,17 +5,18 @@ import java.util.Scanner;
 public class Ex01 {
 	public static int max=80;
 	public static int speed=0;
+	public static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+		
 		String input="";
-		System.out.println("자동차 ver 1.1.1");
+		System.out.println("자동차 ver 1.1.2");
 		while(true){
 			System.out.println("당신의 차량을 선택하세요");
 			System.out.print("1.티코(최대80km, 기본) "
 					+ "2.아반떼(최대150km) 3.소나타(최대210km) >");
-			input = sc.nextLine();
-			int car = Integer.parseInt(input);
+			
+			int car = input();
 			if(car<4 && car>0){
 				switch (car) {
 				case 1:
@@ -34,19 +35,16 @@ public class Ex01 {
 		}
 		while(true){
 			System.out.print("1.현재속도, 2.가속, 3.감속, 0.시동끔 ?>");
-			input = sc.nextLine();
-			int menu = Integer.parseInt(input);
+			int menu = input();
 			if(menu==1){
 				showSpeed();
 			}else if(menu==2){
 				System.out.print("얼마나 가속하시겠습니까? >");
-				input=sc.nextLine();
-				int speed=Integer.parseInt(input);
+				int speed=input();
 				speedUp(speed);
 			}else if(menu==3){
 				System.out.print("얼마나 감속하시겠습니까? >");
-				input=sc.nextLine();
-				int speed=Integer.parseInt(input);
+				int speed=input();
 				speedDown(speed);
 			}else if(menu==0){
 				break;
@@ -55,6 +53,11 @@ public class Ex01 {
 			}
 		}
 		
+	}
+	public static int input(){
+		String input=sc.nextLine();
+		int su=Integer.parseInt(input);
+		return su; 
 	}
 	public static void car(int car){
 		max=car;
