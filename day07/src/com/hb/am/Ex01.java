@@ -1,7 +1,7 @@
 package com.hb.am;
 
 import java.util.Scanner;
-
+ 
 public class Ex01 {
 	public static int max=80;
 	public static int speed=0;
