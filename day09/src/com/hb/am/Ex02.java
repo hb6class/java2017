@@ -1,4 +1,4 @@
-package day09;
+package com.hb.am;
 
 public class Ex02 {
 
