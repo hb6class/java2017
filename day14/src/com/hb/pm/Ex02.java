@@ -33,6 +33,84 @@ public class Ex02 {
 		}
 		System.out.println("사용해주셔서 감사합니다");
 	}
+	public int inputChk(){
+		String tmp=sc.nextLine();
+		if(tmp.trim().length()==0){
+			System.out.println("입력없음");
+			return -1;
+		}
+		for(int i=0; i<tmp.length(); i++){
+			if(!Character.isDigit(tmp.charAt(i))){
+				System.out.println("학번입력확인");
+				return -1;
+			}
+		}
+		int num = Integer.valueOf(tmp);
+		int chk=0;
+		for(chk=0; chk<stus.length; chk++){
+			if(stus[chk].num==num){
+				break;
+			}
+		}
+		if(chk==stus.length){
+			System.out.println("존재하지 않는 학생입니다");
+			return -1;
+		}
+		return num;
+	}
+	public void del(){
+		System.out.print("삭제할 학번>");
+		
+		int num = inputChk();
+		if(num==-1){return;}
+		Student[] stu2= new Student[stus.length-1];
+		//학번을 기준으로 앞
+		for(int i=0; i<num; i++){
+//			stu2[i]=stus[i];
+			stu2[i]=new Student(stus[i].num,stus[i].kor
+					,stus[i].eng,stus[i].math);
+		}
+		//학번을 기준으로 뒤
+		for(int i=num; i<stu2.length; i++){
+//			stu2[i]=stus[i+1];
+			stu2[i]=new Student(stus[i+1].num-1,stus[i+1].kor
+					,stus[i+1].eng,stus[i+1].math);
+		}
+		stus=stu2;
+	}
+	public void edit(){
+		System.out.print("수정할 학번>");
+		String tmp=sc.nextLine();
+		if(tmp.trim().length()==0){
+			System.out.println("입력없음");
+			return;
+		}
+		for(int i=0; i<tmp.length(); i++){
+			if(!Character.isDigit(tmp.charAt(i))){
+				System.out.println("학번입력확인");
+				return;
+			}
+		}
+		int num = Integer.valueOf(tmp);
+		int chk=0;
+		for(chk=0; chk<stus.length; chk++){
+			if(stus[chk].num==num){
+				break;
+			}
+		}
+		if(chk==stus.length){
+			System.out.println("존재하지 않는 학생입니다");
+			return;
+		}
+		System.out.print("국어>");
+		int kor=new Integer(sc.nextLine());
+		System.out.print("영어>");
+		int eng=new Integer(sc.nextLine());
+		System.out.print("수학>");
+		int math=new Integer(sc.nextLine());
+		stus[num]=new Student(num, kor, eng, math);
+		
+	}
 	public void add(){
 		int i=0;
 		Student[] stus1 = stus;
@@ -87,10 +165,11 @@ public class Ex02 {
 			add();
 			break;
 		case 3:
-			//수정
+			edit();
 			break;
 		case 4:
 			//삭제
+			del();
 			break;
 
 		default:
