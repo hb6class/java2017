@@ -42,7 +42,7 @@ public class Ex02 {
 					int j=0;
 					for(j=0; j<pttn2.length; j++){
 						if(pttn2[j]==ch){break;}
-					}
+					} 
 					if(j==pttn2.length){
 						System.out.println("입력오류");
 						lng=false;
