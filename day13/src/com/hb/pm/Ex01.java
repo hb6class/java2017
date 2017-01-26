@@ -11,7 +11,7 @@ public class Ex01 {
 		
 //		>9901011234567
 //		>990101-123456
-//		>구구공일공일-123456
+//		>구구공일공일-일이삼사오육칠
 //		-> 다시확인하시고 입력해주세요
 		Scanner sc = new Scanner(System.in);
 		String input=null;
@@ -23,7 +23,7 @@ public class Ex01 {
 			//2017-1999+1=2017-(1900+99)+1
 			//2017-2002+1=2017-(2000+02)+1
 			if(input.length()<14){
-				System.out.println("입력이 부족합니다");
+				System.out.println("000000-00000000의 형태로 입력하세요");
 				continue;
 			}
 			if(input.length()>14){
