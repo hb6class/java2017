@@ -53,6 +53,14 @@ class Arrs extends Object{
 		return val[a];
 	}
 	
+	public Object clone(){
+		Arrs arr= new Arrs();
+		for(int i=0; i<val.length; i++){
+			arr.add(val[i]);
+		}
+		return arr;
+	}
+	
 	@Override
 	public String toString() {
 		String msg="[";
@@ -76,6 +84,12 @@ public class Ex01 {
 		System.out.println(array.toString());
 		array.del(2);
 		System.out.println(array.toString());
+		
+		Arrs array2= (Arrs)array.clone();
+		array2.add("999999");
+		System.out.println(array2.toString());
+		System.out.println(array.toString());
+		
 	}
 
 }
