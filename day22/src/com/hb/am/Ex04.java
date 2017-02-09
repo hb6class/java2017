@@ -71,25 +71,26 @@ public class Ex04 {
 		return true;
 	}
 	public void add(int num, int kor, int eng, int math) throws IOException{
-		String db="";
-		FileReader fr =null;
+//		String db="";
+//		FileReader fr =null;
 		FileWriter fw =null;
 			try{
-			fr = new FileReader(file);
-			while((cnt=fr.read(cbuf))!=-1){
-				if(cnt!=cbuf.length){
-					cbuf=Arrays.copyOfRange(cbuf, 0, cnt);
-				}
-				db+=new String(cbuf);
-				cbuf = new char[17];
-			}
-			
-			String stu=db+chkFormat(num)+"/"+chkFormat(kor)
+//			fr = new FileReader(file);
+//			while((cnt=fr.read(cbuf))!=-1){
+//				if(cnt!=cbuf.length){
+//					cbuf=Arrays.copyOfRange(cbuf, 0, cnt);
+//				}
+//				db+=new String(cbuf);
+//				cbuf = new char[17];
+//			}
+//			
+			String stu=chkFormat(num)+"/"+chkFormat(kor)
 					+"/"+chkFormat(eng)+"/"+chkFormat(math)+"\r\n";
-			fw = new FileWriter(file);
+//			fw = new FileWriter(file);
+			fw = new FileWriter(file,true);
 			fw.write(stu);
 		}finally{
-			fr.close();
+//			fr.close();
 			fw.close();
 		}
 	}
