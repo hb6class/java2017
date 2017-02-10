@@ -10,7 +10,15 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 class Student implements Serializable{ //명시적
-	int kor,eng,math;
+	int kor;
+	int eng;
+	int math;
+	transient int jumin;
+	
+	@Override
+		public String toString() {
+			return "국어:"+kor+",영어:"+eng+",수학:"+math+",민번:"+jumin;
+		}
 }
 
 public class Ex03 {
@@ -30,6 +38,7 @@ public class Ex03 {
 			stu.kor=90;
 			stu.eng=80;
 			stu.math=70;
+			stu.jumin=123456;
 			oos.writeObject(stu);
 			oos.flush();
 			
