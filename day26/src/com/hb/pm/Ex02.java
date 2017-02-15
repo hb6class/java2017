@@ -1,21 +1,18 @@
 package com.hb.pm;
 
-class Handle2 implements Runnable{
-	Target target;
+class Handle2 extends Thread{
 	boolean boo;
-		
-	public Handle2(Target target) {
-		this.target=target;
+	
+	public Handle2(String name) {
+		super(name);
 	}
 	
 	@Override
 	public void run() {
-		Thread _this = Thread.currentThread();
-		int cnt =0;
 		
 		while(true){			
 			if(boo)Thread.yield();// 활동중인 스레드중 제어권 넘기기
-			System.out.println(_this.getName());
+			else System.out.println(this.getName());
 		}
 		
 	}
@@ -25,11 +22,8 @@ class Handle2 implements Runnable{
 public class Ex02 {
 
 	public static void main(String[] args) {
-		Target target = new Target();
-		Handle2 han = new Handle2(target);
-		Handle2 han2 = new Handle2(target);
-		Thread thr1 = new Thread(han);
-		Thread thr2 = new Thread(han2);
+		Handle2 thr1 = new Handle2("나");
+		Handle2 thr2 = new Handle2("너");
 		thr1.start();
 		thr2.start();
 		try {
@@ -37,7 +31,7 @@ public class Ex02 {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		han2.boo=true;
+		thr2.boo=true;
 	}
 
 }
