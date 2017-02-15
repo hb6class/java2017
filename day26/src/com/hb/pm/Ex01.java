@@ -3,7 +3,7 @@ package com.hb.pm;
 class Target{
 	int cnt;
 
-	private int func() {
+	public int func() {
 		cnt++;
 		return cnt;
 	}
@@ -19,13 +19,17 @@ class Handle implements Runnable{
 	@Override
 	public void run() {
 		synchronized(this){
-			while(true){
-				this.notify();
+			int cnt=0;
+			while(cnt<20){
+				this.notify();// 대기 중 하나 깨움
+//				this.notifyAll();// 대기 중인 스레드를 모두 깨움
+				
 				Thread _this = Thread.currentThread();
-				System.out.println(_this.getName()+":run");
+				cnt=target.func();
+				System.out.println(_this.getName()+":run-"+cnt);
 				try {
 					Thread.sleep(500);
-					this.wait();
+					this.wait();// 자신의 스레드를 대기
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
