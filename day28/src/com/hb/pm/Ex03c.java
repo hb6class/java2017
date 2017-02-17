@@ -24,7 +24,7 @@ public class Ex03c {
 		OutputStreamWriter osw=null;
 		BufferedWriter bw=null;
 		try {
-			sock = new Socket("localhost",6000);
+			sock = new Socket("203.236.209.193",6000);
 			is=sock.getInputStream();
 			isr=new InputStreamReader(is);
 			br=new BufferedReader(isr);
