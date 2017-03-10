@@ -1,6 +1,7 @@
 package com.hb.pm;
 
 import java.awt.Choice;
+import java.awt.List;
 import java.awt.TextField;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,6 +18,28 @@ public class JavaDAO {
 	Statement stmt;
 	ResultSet rs;
 	
+	public void dbSellect(String sql, List list){
+		try {
+			Class.forName(driver);
+			conn=DriverManager.getConnection(url,id,pw);
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql);
+			while(rs.next()){
+				String item="";
+				item+=rs.getString("vnum")+"||";
+				item+=rs.getString("vname")+"||";
+				item+=rs.getInt("kor")+"||";
+				item+=rs.getInt("eng")+"||";
+				item+=rs.getInt("math");
+				list.addItem(item);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void dbNumSelect(String sql,TextField[] editTf){
 		try {
 			Class.forName(driver);
@@ -28,6 +51,7 @@ public class JavaDAO {
 				editTf[1].setText(rs.getInt("kor")+"");
 				editTf[2].setText(rs.getInt("eng")+"");
 				editTf[3].setText(rs.getInt("math")+"");
+				System.out.println(rs.getString("name")+","+rs.getInt("kor")+","+rs.getInt("eng")+","+rs.getInt("math"));
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

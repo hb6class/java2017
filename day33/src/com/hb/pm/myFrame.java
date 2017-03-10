@@ -127,7 +127,7 @@ public class myFrame extends Frame {
 			
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				String sql= "select * from stu02 where num="+e.getItem().toString();
+				String sql= "select * from stu03 where num="+e.getItem().toString();
 				System.out.println(sql);
 				JavaDAO dao = new JavaDAO();
 				dao.dbNumSelect(sql, editTf);
@@ -159,14 +159,12 @@ public class myFrame extends Frame {
 	}
 	
 	private void select(){
-		String sql="select * from stu03 order by num";
+		String sql="select to_char(num,'00000') as vnum,lpad(name,15,' ') as vname,kor,eng,math from stu03 order by num";
 		pmain1.setVisible(false);
 		pmain1=new Panel();
-		List list = new List();
-		list.addItem("test1");
-		list.addItem("test2");
-		list.addItem("test3");
-		list.addItem("test4");
+		List list = new List(20);
+		JavaDAO dao=new JavaDAO();
+		dao.dbSellect(sql,list);
 		pmain1.add(list);
 		this.add(BorderLayout.CENTER,pmain1);
 		pmain1.setVisible(true);
